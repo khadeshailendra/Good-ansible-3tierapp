@@ -1,0 +1,31 @@
+---
+
+- name: Configuration test
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - { role: "./config" }
+
+- name: Haproxy setup
+  hosts: frontends
+  gather_facts: false
+  become: true
+  roles:
+    - { role: './haproxy-role' }
+
+- name: tomcat setup
+  hosts: apps
+  gather_facts: false
+  become: true
+  roles:
+    - { role: './appserver-role' }
+
+- name: postgres setup
+  hosts: appdbs
+  gather_facts: true
+  become: true
+  roles:
+    - { role: './postgresql' }
+
+

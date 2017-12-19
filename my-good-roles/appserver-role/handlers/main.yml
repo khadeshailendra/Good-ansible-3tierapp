@@ -1,0 +1,4 @@
+---
+# handlers file for appserver-role
+- name: restart tomcat-restart
+  service: name=tomcat state=restarted
